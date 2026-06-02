@@ -35,8 +35,13 @@ __pycache__/
 *.png
 scvi_model/
 scvi_heart_atlas_model/
+scvi_heart_model/
 heart_atlas_analysis.png
 heart_atlas_analyzed.h5ad
+code_interpretation_output/
+_pipeline_tmp/
+_scanpy_tmp/
+figures_tmp/
 
 # Allow analysis output figures (figures*.png)
 !figures*.png
