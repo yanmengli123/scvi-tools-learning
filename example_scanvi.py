@@ -26,6 +26,8 @@ labeled_idx = np.random.choice(n_cells, size=int(n_cells * 0.3), replace=False)
 
 # 创建标签列，未标注的设为 "Unknown"
 adata.obs["cell_type"] = adata.obs["labels"].copy()
+# Add "Unknown" to categories first
+adata.obs["cell_type"] = adata.obs["cell_type"].cat.add_categories(["Unknown"])
 adata.obs.loc[~adata.obs.index.isin(adata.obs.index[labeled_idx]), "cell_type"] = "Unknown"
 
 print(f"已标注细胞: {(adata.obs['cell_type'] != 'Unknown').sum()}")
@@ -37,14 +39,12 @@ scvi.model.SCANVI.setup_anndata(
     adata,
     batch_key="batch",
     labels_key="cell_type",
+    unlabeled_category="Unknown",  # 未标注类别
 )
 
 # 4. 创建 SCANVI 模型
 print("\n=== 创建 SCANVI 模型 ===")
-scanvae = scvi.model.SCANVI(
-    adata,
-    unlabeled_category="Unknown",  # 未标注类别
-)
+scanvae = scvi.model.SCANVI(adata)
 
 # 5. 训练模型
 print("\n=== 训练模型 ===")
@@ -57,15 +57,16 @@ scanvae.train(
 # 6. 预测未标注细胞的类型
 print("\n=== 预测细胞类型 ===")
 predictions = scanvae.predict()
-print(f"预测结果维度: {predictions.shape}")
-print(f"预测类别: {predictions.columns.tolist()}")
+print(f"预测结果类型: {type(predictions)}")
+print(f"预测结果形状: {predictions.shape}")
 
 # 7. 获取预测的置信度
 print("\n=== 获取置信度 ===")
 probs = scanvae.predict(soft=True)
-print(f"置信度维度: {probs.shape}")
-print("\n示例预测概率:")
-print(probs.head())
+print(f"置信度类型: {type(probs)}")
+print(f"置信度形状: {probs.shape}")
+print("\n示例预测概率 (前5个细胞):")
+print(probs[:5])
 
 # 8. 差异表达分析
 print("\n=== 差异表达分析 ===")
