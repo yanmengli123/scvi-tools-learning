@@ -29,3 +29,11 @@ __pycache__/
 
 # node
 /node_modules/
+
+# Large data and model files
+*.h5ad
+*.png
+scvi_model/
+scvi_heart_atlas_model/
+heart_atlas_analysis.png
+heart_atlas_analyzed.h5ad
