@@ -88,3 +88,9 @@ Test markers (defined in pyproject.toml):
 - Tests mirror the `src/scvi/` structure in `tests/`
 - Use pytest fixtures from `tests/conftest.py`
 - Mock data utilities available in test files
+
+## Example Files
+
+- `example_basic.py` - SCVI 基础用法（降维、差异表达）
+- `example_scanvi.py` - SCANVI 半监督细胞注释
+- `example_integration.py` - SCVI 数据整合示例
