@@ -65,7 +65,7 @@ Please be sure to install a version of [PyTorch] that is compatible with your GP
 - Tutorials, API reference, and installation guides are available in the [documentation].
 - For discussion of usage, check out our [forum].
 - Please use the [issues] to submit bug reports.
-- If you'd like to contribute, check out our [contributing guide].
+- If you’d like to contribute, check out our [contributing guide].
 - If you find a model useful for your research, please consider citing the corresponding
     publication.
 
