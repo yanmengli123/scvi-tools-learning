@@ -37,3 +37,6 @@ scvi_model/
 scvi_heart_atlas_model/
 heart_atlas_analysis.png
 heart_atlas_analyzed.h5ad
+
+# Allow analysis output figures (figures*.png)
+!figures*.png
